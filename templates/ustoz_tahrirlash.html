@@ -1,0 +1,37 @@
+<form method="post">
+    {% csrf_token %}
+    <label>Ism: </label>
+    <input type="text" name="ism" value="{{ ustoz.ism }}">
+    <br>
+    <label>Yosh: </label>
+    <input type="number" name="yosh" value="{{ ustoz.yosh }}">
+    <br>
+    <label>Jins: </label>
+    <select name="jins">
+        {% if ustoz.jins == "Erkak" %}
+            <option>Erkak</option>
+            <option>Ayol</option>
+        {% else %}
+            <option>Ayol</option>
+            <option>Erkak</option>
+        {% endif %}
+    </select>
+    <br>
+    <label>Daraja: </label>
+    <select name="daraja">
+        <option>Bakalavr</option>
+        <option>Magsitr</option>
+        <option>Aspirant</option>
+        <option>Dokotrant</option>
+    </select>
+    <br>
+    <label>Fan: </label>
+    <select name="fan_id">
+        <option value="{{ ustoz.fan.id }}">{{ ustoz.fan.nom }}</option>
+        {% for fan in fanlar %}
+            <option value="{{ fan.id }}">{{ fan.nom }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button>Tahrirlash</button>
+</form>
